@@ -1,7 +1,7 @@
-FROM python:3.10.1-buster
+FROM tensorflow:2.8.0-gpu
 
 ## The MAINTAINER instruction sets the author field of the generated images.
-MAINTAINER author@example.com
+MAINTAINER lkokkalas@apnea.ai
 
 ## DO NOT EDIT the 3 lines.
 RUN mkdir /physionet
