@@ -1,4 +1,4 @@
-FROM tensorflow:2.8.0-gpu
+FROM tensorflow/tensorflow:2.8.0-gpu
 
 ## The MAINTAINER instruction sets the author field of the generated images.
 MAINTAINER lkokkalas@apnea.ai
