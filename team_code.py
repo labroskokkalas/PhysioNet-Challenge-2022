@@ -61,7 +61,7 @@ def train_challenge_model(data_folder, model_folder, verbose):
     METRICS = ['accuracy']
     model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=METRICS)#,sample_weight_mode="temporal")
     history = model.fit(stateful_generator, 
-                    epochs=10, 
+                    epochs=20, 
                     max_queue_size=10,            
                     workers=1,                        
                     use_multiprocessing=False,       
@@ -124,9 +124,9 @@ def run_challenge_model(model, data, recordings, verbose):
 
         classes=['Present','Unknown','Absent']
         probabilities = probabilities + y_pred[0]
-        if y_pred[0][0] > 0.5:
+        if y_pred[0][0] > 0.9:
             present_probabilities = y_pred[0]
-            print(present_probabilities)
+            #print(present_probabilities)
 
     probabilities = probabilities/len(recordings) 
     if present_probabilities is not None:
