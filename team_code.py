@@ -61,7 +61,7 @@ def train_challenge_model(data_folder, model_folder, verbose):
     METRICS = ['accuracy']
     model.compile(optimizer=opt, loss='categorical_crossentropy', metrics=METRICS)#,sample_weight_mode="temporal")
     history = model.fit(stateful_generator, 
-                    epochs=20, 
+                    epochs=40, 
                     max_queue_size=10,            
                     workers=1,                        
                     use_multiprocessing=False,       
@@ -274,6 +274,8 @@ def stateful_model(input_shape):
      X = tf.keras.layers.Activation("relu")(X)                                
      X = tf.keras.layers.Dropout(rate=0.2,noise_shape=(1, 1, 128))(X)   
      X = tf.keras.layers.Bidirectional(tf.keras.layers.GRU(units=128, stateful=True),merge_mode='ave')(X)    
+     X = tf.keras.layers.BatchNormalization()(X) 
+     X = tf.keras.layers.Dropout(rate=0.2)(X)
      X = tf.keras.layers.Dense(3, activation = "softmax")(X) 
      model = tf.keras.Model(inputs = X_input, outputs = X)
      model.summary()
